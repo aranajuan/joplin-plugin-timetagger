@@ -38,8 +38,11 @@ joplin.plugins.register({
 			if(folderEnabled){
 				let folder = await helpers.getNoteParents(currentNote.parent_id);
 				folder.forEach(e=> {
-					let title = e.title.match(/([A-Z]*[a-z]*)/);
-					nameFolder == ""? nameFolder="#"+title[0] : nameFolder = "#"+title[0] + " " + nameFolder;
+					let title = /[^A-Za-z_]*(.*)/g.exec(e.title)[1];
+					if(title){
+						title = title.replace(/ /g,"_");
+						nameFolder == ""? nameFolder="#"+title : nameFolder = "#"+title + " " + nameFolder;
+					}
 				})
 			}
 

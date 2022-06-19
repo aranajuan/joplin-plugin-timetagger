@@ -4,10 +4,10 @@
 	"app_min_version": "2.8",
 	"version": "1.0.0",
 	"name": "Joplin TimeTagger Plugin",
-	"description": "",
+	"description": "Joplin TimeTagger Plugin",
 	"author": "Juan Arana",
 	"homepage_url": "https://github.com/aranajuan/joplin-plugin-timetagger",
 	"repository_url": "https://github.com/aranajuan/joplin-plugin-timetagger",
-	"keywords": [],
+	"keywords": ["joplin-plugin"],
 	"categories": []
 }

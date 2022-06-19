@@ -19,12 +19,12 @@ export namespace settings {
         let PLUGIN_SETTINGS = {};
 
         PLUGIN_SETTINGS[CONFIG_HOST] = {
-            value: "",
+            value: "https://your_timetagger.com",
             public: true,
             section: SECTION,
             type: SettingItemType.String,
             label: 'Host',
-            description: "TimeTagger host",
+            description: "TimeTagger host (require reload)",
         }
 
         PLUGIN_SETTINGS[CONFIG_TOKEN] = {
@@ -33,7 +33,7 @@ export namespace settings {
             section: SECTION,
             type: SettingItemType.String,
             label: 'Token',
-            description: "TimeTagger access token",
+            description: "TimeTagger access token (require reload",
         }
 
         PLUGIN_SETTINGS[CONFIG_FOLDER_ENABLED] = {
