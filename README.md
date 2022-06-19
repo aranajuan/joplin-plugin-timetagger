@@ -6,4 +6,4 @@ Start timer will generate tags from notebooks, tags and start a record in your i
 
 ![joplin](https://github.com/aranajuan/joplin-plugin-timetagger/raw/main/img/joplin.png)
 
-![timetagger](https://github.com/aranajuan/joplin-plugin-timetagger/raw/main/img/timetagger.png
+![timetagger](https://github.com/aranajuan/joplin-plugin-timetagger/raw/main/img/timetagger.png)
