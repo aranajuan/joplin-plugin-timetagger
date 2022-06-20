@@ -16,8 +16,14 @@ export namespace timetagger {
 
 		private async startRecord(name : string){
 			let now = Math.floor(new Date().getTime()/1000);
-
 			let activeRecords = await this.getRunnigRecords();
+
+			//check if new name is already running
+			if(activeRecords.find(e => e.ds == name)!=undefined){
+				alert("Already running: "+name);
+				return;
+			}
+
 			await this.stopRecords(activeRecords);
 
 			let newRecord = [{
@@ -36,6 +42,7 @@ export namespace timetagger {
     		if(response.status!=200){
     			alert("Error TimeTagger api");
     		}
+    		alert("Started: "+name);
 		}
 
 		private async stopRecords(records : any[]){
@@ -86,7 +93,7 @@ export namespace timetagger {
 		async timerStartFn(){
 			
 			let title = await this.getTitle();
-			this.startRecord(title);
+			this.startRecord(title.toLowerCase());
 			console.log("start: "+title);
 		}
 
