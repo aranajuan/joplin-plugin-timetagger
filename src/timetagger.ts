@@ -1,3 +1,4 @@
+import joplin from 'api';
 const crypto = require('crypto');
 
 export namespace timetagger {
@@ -20,7 +21,8 @@ export namespace timetagger {
 
 			//check if new name is already running
 			if(activeRecords.find(e => e.ds == name)!=undefined){
-				alert("Already running: "+name);
+				await joplin.views.dialogs.showMessageBox("Already running: "+name);
+
 				return;
 			}
 
@@ -40,9 +42,9 @@ export namespace timetagger {
 			});
 			let response = await fetch(`${this.serverHost}/records`,{method:"PUT",headers:headers,body: JSON.stringify(newRecord)});
     		if(response.status!=200){
-    			alert("Error TimeTagger api");
+    			await joplin.views.dialogs.showMessageBox("Error TimeTagger api");
     		}
-    		alert("Started: "+name);
+    		await joplin.views.dialogs.showMessageBox("Started: "+name);
 		}
 
 		private async stopRecords(records : any[]){
@@ -63,7 +65,7 @@ export namespace timetagger {
 			});
 			let response = await fetch(`${this.serverHost}/records`,{method:"PUT",headers:headers,body: JSON.stringify(stopRecords)});
     		if(response.status!=200){
-    			alert("Error TimeTagger api");
+    			await joplin.views.dialogs.showMessageBox("Error TimeTagger api");
     		}
 		}
 
@@ -77,7 +79,7 @@ export namespace timetagger {
 			});
     		let response = await fetch(`${this.serverHost}/records?timerange=${t1}-${t2}`,{method:"GET",headers:headers});
     		if(response.status!=200){
-    			alert("Error TimeTagger api");
+    			await joplin.views.dialogs.showMessageBox("Error TimeTagger api");
     			return activeRecords;
     		}
     		let recordList = await response.json();
@@ -101,7 +103,7 @@ export namespace timetagger {
 			console.log("stop");
 			let activeRecords = await this.getRunnigRecords();
 			await this.stopRecords(activeRecords);
-			alert("All stopped");
+			await joplin.views.dialogs.showMessageBox("All stopped");
 		}
 
 	}
