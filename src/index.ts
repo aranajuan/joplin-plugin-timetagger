@@ -10,6 +10,7 @@ import {
     CONFIG_TOKEN,
     CONFIG_FOLDER_ENABLED,
     CONFIG_TAG_PREFIX,
+    CONFIG_TAG_PREFIX_REMOVE,
 } from "./consts";
 
 joplin.plugins.register({
@@ -23,6 +24,7 @@ joplin.plugins.register({
 		async function getRecordName():Promise<string>{
 			let folderEnabled = await joplin.settings.value(CONFIG_FOLDER_ENABLED);
 			let tagPrefix = await joplin.settings.value(CONFIG_TAG_PREFIX);
+			let tagPrefixRemove = await joplin.settings.value(CONFIG_TAG_PREFIX_REMOVE);
 
 			let nameFolder : string = "";
 			let nameTags : string = "";
@@ -40,7 +42,7 @@ joplin.plugins.register({
 				folder.forEach(e=> {
 					let title = /[^A-Za-z_]*(.*)/g.exec(e.title)[1];
 					if(title){
-						title = title.replace(/ /g,"_");
+						title = title.replace(/[ \.]/g,"_");
 						nameFolder == ""? nameFolder="#"+title : nameFolder = "#"+title + " " + nameFolder;
 					}
 				})
@@ -53,7 +55,13 @@ joplin.plugins.register({
 				tags.forEach(e=>{
 					for(let i=0;i<prefixes.length;i++){
 						if(e.title.startsWith(prefixes[i])){
-							nameTags == ""? nameTags="#"+e.title : nameTags = "#"+e.title + " " + nameTags;
+							let title = e.title;
+							if(tagPrefixRemove){
+								title = title.substring(prefixes[i].length);
+							}
+							title = title.replace(/[ \.]/g,"_");
+
+							nameTags == ""? nameTags="#"+title : nameTags = "#"+title + " " + nameTags;
 							break;
 						}
 					}

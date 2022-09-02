@@ -5,6 +5,7 @@ import {
     CONFIG_TOKEN,
     CONFIG_FOLDER_ENABLED,
     CONFIG_TAG_PREFIX,
+    CONFIG_TAG_PREFIX_REMOVE,
 } from "./consts";
 
 export namespace settings {
@@ -33,7 +34,7 @@ export namespace settings {
             section: SECTION,
             type: SettingItemType.String,
             label: 'Token',
-            description: "TimeTagger access token (require reload",
+            description: "TimeTagger access token (require reload)",
         }
 
         PLUGIN_SETTINGS[CONFIG_FOLDER_ENABLED] = {
@@ -53,6 +54,16 @@ export namespace settings {
             label: 'Tag prefix',
             description: "Add all tags with this prefix to record title (separated with ,)",
         }
+
+        PLUGIN_SETTINGS[CONFIG_TAG_PREFIX_REMOVE] = {
+            value: true,
+            public: true,
+            section: SECTION,
+            type: SettingItemType.Bool,
+            label: 'Remove prefix',
+            description: "Remove prefix before pushing to timetagger",
+        }
+
 
         await joplin.settings.registerSettings(PLUGIN_SETTINGS);
     }
