@@ -10,7 +10,16 @@ export namespace timetagger {
 		getTitle : Function
 
 		constructor(host: string ,token : string, getTitle : Function){
-			this.serverHost=host+"/timetagger/api/v2";
+			if(host.indexOf("/api")>0){
+				// host is API endpoint
+				if(!host.endsWith("/")){
+					host += "/";
+				}
+				this.serverHost=host+"v2";
+			}else{
+				// host is hostname, assume default self-hosting API endpoint path
+				this.serverHost=host+"/timetagger/api/v2";
+			}
 			this.serverToken=token;
 			this.getTitle=getTitle;
 		}
