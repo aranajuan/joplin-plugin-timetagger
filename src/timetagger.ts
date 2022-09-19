@@ -16,7 +16,7 @@ export namespace timetagger {
 			if(host.indexOf("/api")>0){
 				// full URL, assume that user knows what to do
 				this.serverHost=host;
-			} else if(host="https://timetagger.app"){
+			} else if(host=="https://timetagger.app"){
 				// Using timetagger.app service
 				this.serverHost=host+"/api/v2";
 			}else{
