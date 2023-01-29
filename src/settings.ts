@@ -6,6 +6,7 @@ import {
     CONFIG_FOLDER_ENABLED,
     CONFIG_TAG_PREFIX,
     CONFIG_TAG_PREFIX_REMOVE,
+    CONFIG_TITLE_FILTER,
 } from "./consts";
 
 export namespace settings {
@@ -64,6 +65,14 @@ export namespace settings {
             description: "Remove prefix before pushing to timetagger",
         }
 
+        PLUGIN_SETTINGS[CONFIG_TITLE_FILTER] = {
+            value: "",
+            public: true,
+            section: SECTION,
+            type: SettingItemType.String,
+            label: 'Title filter',
+            description: "Remove regex from note title (separated with ,)",
+        }
 
         await joplin.settings.registerSettings(PLUGIN_SETTINGS);
     }

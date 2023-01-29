@@ -11,6 +11,7 @@ import {
     CONFIG_FOLDER_ENABLED,
     CONFIG_TAG_PREFIX,
     CONFIG_TAG_PREFIX_REMOVE,
+    CONFIG_TITLE_FILTER,
 } from "./consts";
 
 joplin.plugins.register({
@@ -21,10 +22,12 @@ joplin.plugins.register({
 		const configHost = await joplin.settings.value(CONFIG_HOST);
 		const configToken = await joplin.settings.value(CONFIG_TOKEN);
 
+
 		async function getRecordName():Promise<string>{
 			let folderEnabled = await joplin.settings.value(CONFIG_FOLDER_ENABLED);
 			let tagPrefix = await joplin.settings.value(CONFIG_TAG_PREFIX);
 			let tagPrefixRemove = await joplin.settings.value(CONFIG_TAG_PREFIX_REMOVE);
+			let titleFilter = await joplin.settings.value(CONFIG_TITLE_FILTER);
 
 			let nameFolder : string = "";
 			let nameTags : string = "";
@@ -68,7 +71,16 @@ joplin.plugins.register({
 				});
 			}
 
-			return nameFolder+" "+nameTags+" "+currentNote.title;
+			// clean note title
+			let titleFilterList = titleFilter.split(",");
+			let noteTitle = currentNote.title;
+			for(let i=0;i<titleFilterList.length;i++){
+				var re = new RegExp(titleFilterList[i], "g");
+				noteTitle = noteTitle.replace(re,"");
+			}
+
+
+			return nameFolder+" "+nameTags+" "+noteTitle;
 		}
 
 
