@@ -44,13 +44,11 @@ export namespace statusbar {
 
 
 		private runTimed() {
-			console.info('timer_run');
 			this.timerStatusFN();
 			this.setTimer();
 		}
 
 		private setTimer() {
-			console.info('timer_setted');
 		    clearTimeout(this.timer);
 		    this.timer = null;
 		    this.timer = setTimeout(this.runTimed.bind(this), 1000 * 60 * this.updateInterval);

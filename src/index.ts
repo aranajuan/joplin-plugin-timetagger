@@ -80,7 +80,7 @@ joplin.plugins.register({
 				var re = new RegExp(titleFilterList[i], "g");
 				noteTitle = noteTitle.replace(re,"");
 			}
-
+			noteTitle = noteTitle.toLowerCase();
 
 			return nameFolder+" "+nameTags+" "+noteTitle;
 		}
@@ -120,9 +120,9 @@ joplin.plugins.register({
 					timeRunnigOtherNote=0;
 				} else if (timeRunnigOtherNote==0){
 					timeRunnigOtherNote = Date.now();
-				}else if (timeRunnigOtherNote > 0 && (Date.now()-timeRunnigOtherNote) < (2 * 1000 * 60)){
+				} else if (timeRunnigOtherNote > 0 && (Date.now()-timeRunnigOtherNote) < (2 * 1000 * 60)){
 					activeTimer = 'check timer - ' + activeTimer;
-				}else{
+				} else{
 					activeTimer = '<b class="blink"><span>[[UPDATE]]</span></b> - ' + activeTimer;
 				}
 
