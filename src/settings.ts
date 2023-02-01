@@ -7,6 +7,7 @@ import {
     CONFIG_TAG_PREFIX,
     CONFIG_TAG_PREFIX_REMOVE,
     CONFIG_TITLE_FILTER,
+    CONFIG_VIEW,
 } from "./consts";
 
 export namespace settings {
@@ -36,6 +37,20 @@ export namespace settings {
             type: SettingItemType.String,
             label: 'Token',
             description: "TimeTagger access token (require reload)",
+        }
+
+        PLUGIN_SETTINGS[CONFIG_VIEW] = {
+            value: "panel",
+            type: SettingItemType.String,
+            section: SECTION,
+            isEnum: true,
+            public: true,
+            label: "Panel or Toolbar",
+            description: "(require reload)",
+            options: {
+              toolbar: "Toolbar",
+              panel: "Panel",
+            }
         }
 
         PLUGIN_SETTINGS[CONFIG_FOLDER_ENABLED] = {

@@ -1,0 +1,37 @@
+.container {
+	background-color: var(--joplin-odd-background-color);
+	color: var(--joplin-color);
+	font-size: var(--joplin-font-size);
+	font-family: var(--joplin-font-family);
+}
+
+.toolbarIcon {
+    font-size: var(--joplin-toolbar-icon-size);
+}
+.primary {
+    color: var(--joplin-color);
+}
+.secondary {
+    color: var(--joplin-color-2);
+}
+
+
+.blink {
+	text-align: center;
+	line-height: 50px;
+}
+span {
+	color: red;
+	animation: blink 1s linear infinite;
+}
+@keyframes blink {
+0% {
+  opacity: 0;
+}
+50% {
+  opacity: .5;
+}
+100% {
+  opacity: 1;
+}
+}
